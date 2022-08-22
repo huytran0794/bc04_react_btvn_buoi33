@@ -7,8 +7,8 @@ export const CLOSE_DETAIL = "CLOSE_DETAIL";
 
 // CART CONST ACTION TYPE
 
-export const SHOW_CART = "SHOW_CART";
-export const HIDE_CART = "HIDE_CART";
+export const VIEW_CART = "VIEW_CART";
+export const CLOSE_CART = "CLOSE_CART";
 export const SHOW_MINI_CART = "SHOW_MINI_CART";
 export const HIDE_MINI_CART = "HIDE_MINI_CART";
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ShoeList from "./ShoeList";
 import ShoeDetail from "./ShoeDetail";
 import Nav from "./Nav";
+
 class ShoeShop extends Component {
   titleClassName = `
       title uppercase text-5xl tracking-wide font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#83b4ac] via-indigo-700 to-violet-900
