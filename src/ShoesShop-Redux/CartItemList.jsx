@@ -5,18 +5,20 @@ import {
   deleteCartItemAction,
   increaseCartAction,
 } from "./redux/actions/cartAction";
+import { convertNumberLocaleUS } from "./utils.jsx/System.utils";
 
 export class CartItemList extends Component {
   render() {
+    let totalPrice = 0;
     let emptyCart = (
-      <p className="mx-auto text-slate-600 text-3xl uppercase">
+      <p className="mx-auto text-slate-600 text-3xl uppercase p-10">
         Your cart is empty
       </p>
     );
     if (!this.props.cart.length) {
+      totalPrice = 0;
       return emptyCart;
     }
-    console.log(this.props.cart);
     return (
       <div className="product__table w-full ">
         <div className="heading w-full flex items-center uppercase text-center fw-semibold text-base text-white bg-sky-500">
@@ -30,6 +32,7 @@ export class CartItemList extends Component {
         </div>
         <div className="body">
           {this.props.cart.map((cartItem, idx) => {
+            totalPrice += cartItem.getItemTotalPrice();
             return (
               <div
                 className="content flex items-center text-center"
@@ -75,7 +78,7 @@ export class CartItemList extends Component {
                     <input
                       type="text"
                       className="product__quantity text-center outline-none w-8 h-8 border border-x-0 border-zinc-200 focus:outline-none focus:bborder-slate-500 focus:border-x-[1px] hover:border-slate-500 hover:border-x-[1px] duration-500"
-                      value={cartItem.quantity}
+                      value={cartItem.quantityInCart}
                     />
                     <div
                       className="btn btn-adjust btn-up text-[#ccc] cursor-pointer w-8 h-8 flex items-center justify-center rounded-sm px-1 py-2 border border-zinc-200 focus:border-slate-500 hover:border-slate-500 hover:text-slate-700 duration-500"
@@ -89,9 +92,8 @@ export class CartItemList extends Component {
                 </div>
                 <div className="px-3 w-2/12 ">
                   <div className="item__total-price text-lg font-semibold text-center text-red-800 hover:text-red-700 duration-700">
-                    <span className="currency mr-1">$</span>
                     <span className="number">
-                      {cartItem.price * cartItem.quantity}
+                      {convertNumberLocaleUS(cartItem.getItemTotalPrice())}
                     </span>
                   </div>
                 </div>
@@ -106,6 +108,15 @@ export class CartItemList extends Component {
               </div>
             );
           })}
+        </div>
+        <div className="footer border-t-[1px] border-t-slate-400">
+          <div className="cart__total-price text-right py-3">
+            <span className="title uppercase font-medium text-lg">Total</span>
+            <span className="char">:</span>
+            <span className="price text-lg text-red-400 font-medium ml-3">
+              {convertNumberLocaleUS(totalPrice)}
+            </span>
+          </div>
         </div>
       </div>
     );

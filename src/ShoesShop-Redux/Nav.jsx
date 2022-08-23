@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { viewCartAction } from "./redux/actions/cartAction";
-import { Cart } from "./Cart";
 class Nav extends Component {
   render() {
     return (
       <>
-        <nav className="bg-gray-300/30">
+        <nav className="bg-gray-300/30 shadow-lg">
           <div className="container">
             <div className="nav-wrapper flex items-center justify-between py-4 ">
               <div className="nav-brand uppercase text-4xl cursor-pointer text-slate-500 hover:text-slate-700 duration-500">
@@ -28,18 +27,14 @@ class Nav extends Component {
             </div>
           </div>
         </nav>
-        {this.props.open && <Cart />}
       </>
     );
   }
 }
 
-let mapStateToProps = (state) => {
-  return {
-    cart: state.cartReducer.cart,
-    open: state.cartReducer.open,
-  };
-};
+let mapStateToProps = (state) => ({
+  cart: state.cartReducer.cart,
+});
 
 let mapDispatchToProps = (dispatch) => {
   return {

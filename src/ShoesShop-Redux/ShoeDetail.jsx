@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { closeDetailAction } from "./redux/actions/viewDetailAction";
+import { convertNumberLocaleUS } from "./utils.jsx/System.utils";
 
 class ShoeDetail extends Component {
   render() {
@@ -59,7 +60,11 @@ class ShoeDetail extends Component {
                         </div>
                         <div className="desc text-slate-400">{description}</div>
                         <div className="price text-2xl text-red-500 font-semibold text0">
-                          $ {price}
+                          <span className="title">Price</span>
+                          <span className="char">:</span>
+                          <span className="number">
+                            {convertNumberLocaleUS(price)}
+                          </span>
                         </div>
                       </div>
                     </div>
