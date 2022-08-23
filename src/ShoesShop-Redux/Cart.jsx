@@ -5,7 +5,6 @@ import CartItemList from "./CartItemList";
 
 export class Cart extends Component {
   render() {
-    console.log(this.props.cart);
     return (
       <>
         <div
@@ -43,19 +42,25 @@ export class Cart extends Component {
   }
 }
 
+// let mapStateToProps = (state) => {
+//   return {
+//     cart: state.cartReducer.cart,
+//     open: state.cartReducer.open,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     handleCloseCart: () => {
+//       dispatch(closeCartAction);
+//     },
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 let mapStateToProps = (state) => {
   return {
-    cart: state.cartReducer.cart,
     open: state.cartReducer.open,
   };
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleCloseCart: () => {
-      dispatch(closeCartAction);
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps)(Cart);

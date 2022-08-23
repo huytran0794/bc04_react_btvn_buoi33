@@ -2,6 +2,7 @@ import {
   ADD_TO_CART,
   CLOSE_CART,
   DECREASE_ITEM_CART,
+  DELETE_FROM_CART,
   INCREASE_ITEM_CART,
   VIEW_CART,
 } from "../constant/const";
@@ -26,7 +27,6 @@ export let cartReducer = (state = initialState, { type, payload }) => {
     case VIEW_CART:
       return { ...state, open: true };
     case CLOSE_CART:
-      console.log("Inside close cart reducer now");
       return { ...state, open: false };
     case INCREASE_ITEM_CART:
       idx = state.cart.findIndex((item) => item.id === payload.id);
@@ -44,6 +44,12 @@ export let cartReducer = (state = initialState, { type, payload }) => {
         }
       }
       return { ...state, cart: [...state.cart] };
+    case DELETE_FROM_CART:
+      idx = state.cart.findIndex((item) => item.id === payload.id);
+      if (idx > -1) {
+        state.cart.splice(idx, 1);
+        return { ...state, cart: [...state.cart] };
+      }
     default:
       return state;
   }

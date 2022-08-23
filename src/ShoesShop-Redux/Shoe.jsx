@@ -5,16 +5,8 @@ import { viewDetailAction } from "./redux/actions/viewDetailAction";
 
 class Shoe extends Component {
   render() {
-    let {
-      id,
-      name,
-      alias,
-      price,
-      description,
-      shortDescription,
-      quantity,
-      image,
-    } = this.props.shoe;
+    let { id, name, price, shortDescription, quantity, image } =
+      this.props.shoe;
     let flexCenterClass = "flex justify-center items-center";
     return (
       <div className="shoe card w-3/12 p-5" id={id} onClick={() => {}}>
